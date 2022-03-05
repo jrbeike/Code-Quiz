@@ -60,7 +60,44 @@ var buttomsWrapperE1 = document.querySelector(".btn-wrapper");
 var scoreE1 = document.querySelector("#timer");
 var submitFormBtnE1 = document.querySelector("#submit-form-btn");
 var answerMsgE1 = document.querySelector(".answer.msg");
-var pageContentE1 = document.querySelector(".page-content")
-var pageContentE1 = document.querySelector(".page-content")
-var pageContentE1 = document.querySelector(".page-content")
-var pageContentE1 = document.querySelector(".page-content")
+
+/**Event handlers/ */
+var startQuizHandler =function () {
+    //set intial timer to 75 seconds
+    score = 75;
+    timerE1.textContent =score;
+
+    //modifies CSS
+    pageContentE1.style.alignItems = "flex-start";
+
+    // removes start button and intro text
+    startQuizBtnE1.remove();
+    introMsgE1.remove();
+
+    countDown();
+    displayQuestion();
+};
+
+//handles quiz and checks the answers
+var quizHandler =function (event) {
+    //debugger
+    document.querySelector(".answer-wrapper").classList.remove("hide");
+    var targetE1 = event.target;
+    //removes span and stores it value as the answer
+    var answer =  targetE1.innerHTML;
+    answer=answer.replace(/<span>\d. <\/span>/, "");
+
+    //checks answer
+    if (answer === quiz[0].correctAnswer){
+        answerMsgE1.setAttribute("style","color: green");
+        answerMsgE1.textContent = "Correct!";
+        correctAnswers++;
+        clearAnswerValidationMsg();
+      } else if (answer != quiz[0].correctAnswer) {
+        answerMsgEl.setAttribute("style", "color: red");
+        answerMsgEl.textContent = "Wrong!";
+        score = score - 15;
+        clearAnswerValidationMsg();
+    }
+
+}
