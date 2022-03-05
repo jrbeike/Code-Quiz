@@ -98,6 +98,9 @@ var quizHandler =function (event) {
         answerMsgEl.textContent = "Wrong!";
         score = score - 15;
         clearAnswerValidationMsg();
-    }
+        //set element value
+        scoreE1.textContent =score;
+    }   
+
 
 }
