@@ -101,6 +101,19 @@ var quizHandler =function (event) {
         //set element value
         scoreE1.textContent =score;
     }   
+    // removes answered questions fromt eh array of question objects
+    quiz.shift();
+    if (quiz.length > 0 && score > 0) {
+        displayQuestion();
+    }
+    else if (quiz.length === 0 || score === 0) {
+        //gather intials
+        displayDonePage();
+    }
+};
 
+//submuit the iniutials and score form
+var submitScoreFormHandler = function() {
+    pageRedirect();
+};
 
-}
