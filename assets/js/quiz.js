@@ -174,3 +174,10 @@ function clearAnswerValidationMsg(){
     }, 2000);
 }
 
+//displays final score, collects initals
+function displayDonePage() {
+    pageTitleE1.textContent = "All Done!";
+    buttonsWrapperE1.remove();
+    document.querySelector(".time-wrapper").classList.add("hide");
+    
+}
