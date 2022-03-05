@@ -166,3 +166,11 @@ function displayQuestion() {
     }
     return;
 }
+
+//clears answer validations msg
+function clearAnswerValidationMsg(){
+    setTimeout(function () {
+        document.querySelector(".answer-wrapper").classList.add("hide");
+    }, 2000);
+}
+
