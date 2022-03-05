@@ -134,3 +134,35 @@ function countDown(){
         }
     }, 1000);
 }
+
+//adds current question and answer to the form
+function displayQuestion() {
+    // checkss if there are existing answers already displayed
+    var buttonE1ChildElementsCount = document.querySelector(".btn-wrapper")
+    .childElementCount;
+    if (buttonE1ChildElementsCount > 0) {
+        document.querySelector(".btn-wrapper").innerHTML = "";
+    }
+    //id counter that will be then assigned to DOM entry for a given answer
+    var index = 0;
+    //dynamically retrieves all answer keys from the given quiz
+    // for each answer creates a new buttom and writes answers value into elements text
+    for (var key in quiz[0]) {
+        if (/^answer/.test(key)) {
+            var newSpanE1 = document.createElement("span");
+            newSpanE1.innerText = '${index}. ';
+
+            var answerBtnE1 =document.createElement("button");
+            answerBtnEl.setAttribute("class", "btn left-aligned");
+            answerBtnEl.innerHTML = `<span>${index}. </span>${quiz[0][key]}`;
+
+            //displayts question
+            pageTitleE1.textContent = quiz[0].question;
+
+            //displays answer
+            buttonsWrappperE1.appendChild(answerBtnE1);
+        }
+        index++;    
+    }
+    return;
+}
