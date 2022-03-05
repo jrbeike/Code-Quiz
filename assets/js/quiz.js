@@ -50,4 +50,17 @@ var quiz = [
     },
 ];
 
-/**** */
+/*global dom variables*/
+var timerE1 =document.querySelector("#timer");
+var pageContentE1 = document.querySelector(".page-content");
+var startQuizBtnE1 = document.querySelector("#start-quiz");
+var pageTitleE1 = document.querySelector(".page-title");
+var introMsgE1 = document.querySelector(".page-content p");
+var buttomsWrapperE1 = document.querySelector(".btn-wrapper");
+var scoreE1 = document.querySelector("#timer");
+var submitFormBtnE1 = document.querySelector("#submit-form-btn");
+var answerMsgE1 = document.querySelector(".answer.msg");
+var pageContentE1 = document.querySelector(".page-content")
+var pageContentE1 = document.querySelector(".page-content")
+var pageContentE1 = document.querySelector(".page-content")
+var pageContentE1 = document.querySelector(".page-content")
