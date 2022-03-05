@@ -117,3 +117,20 @@ var submitScoreFormHandler = function() {
     pageRedirect();
 };
 
+//handles countdown
+function countDown(){
+    //use the set interbal method to call a fucntuion to be executed every 1000 ms
+    var timeInterval = setInterval(function () {
+        // as long as the score is grater than 1 and there are no mroe questions left
+        //keep counting doiwn
+        if (score >= 1 && quiz.length >=1) {
+            timerE1.textContent = score;
+            score--;
+            console.error(quiz.length);
+        }
+        else {
+            clearInterbal(timeInterval);
+            displayDonePage();
+        }
+    }, 1000);
+}
