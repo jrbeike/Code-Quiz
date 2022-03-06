@@ -234,7 +234,7 @@ function saveScoreInLocalStorage() {
             }
         }
         scoresArray.push(highScore);
-        localStorage.setItem("highScores, JSON.stringify(scoresArray");
+        localStorage.setItem("highScores", JSON.stringify(scoresArray));
         return;
         //if new user then create and push the score object to the array
     }else {
