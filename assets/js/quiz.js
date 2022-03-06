@@ -94,8 +94,8 @@ var quizHandler =function (event) {
         correctAnswers++;
         clearAnswerValidationMsg();
       } else if (answer != quiz[0].correctAnswer) {
-        answerMsgEl.setAttribute("style", "color: red");
-        answerMsgEl.textContent = "Wrong!";
+        answerMsgE1.setAttribute("style", "color: red");
+        answerMsgE1.textContent = "Wrong!";
         score = score - 15;
         clearAnswerValidationMsg();
         //set element value
@@ -153,8 +153,8 @@ function displayQuestion() {
             newSpanE1.innerText = '${index}. ';
 
             var answerBtnE1 =document.createElement("button");
-            answerBtnEl.setAttribute("class", "btn left-aligned");
-            answerBtnEl.innerHTML = `<span>${index}. </span>${quiz[0][key]}`;
+            answerBtnE1.setAttribute("class", "btn left-aligned");
+            answerBtnE1.innerHTML = `<span>${index}. </span>${quiz[0][key]}`;
 
             //displayts question
             pageTitleE1.textContent = quiz[0].question;
