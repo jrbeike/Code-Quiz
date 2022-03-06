@@ -203,3 +203,10 @@ function pageRedirect() {
         alert("Please provide your intials");
     }
 }
+// adds the score to the local storage for further re-use in high-scores.js
+function saveScoreInLocalStorage() {
+    var intials = document.querySelector("#initals").value.trim().toUpperCase();
+    //we want to preserve the existing score rather than overwriting them
+    var scoresArray =JSON.parse(localStorage.getItem("highScores")) || [];
+    
+}
