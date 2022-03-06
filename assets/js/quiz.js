@@ -56,7 +56,7 @@ var pageContentE1 = document.querySelector(".page-content");
 var startQuizBtnE1 = document.querySelector("#start-quiz");
 var pageTitleE1 = document.querySelector(".page-title");
 var introMsgE1 = document.querySelector(".page-content p");
-var buttomsWrapperE1 = document.querySelector(".btn-wrapper");
+var buttonsWrapperE1 = document.querySelector(".btn-wrapper");
 var scoreE1 = document.querySelector("#timer");
 var submitFormBtnE1 = document.querySelector("#submit-form-btn");
 var answerMsgE1 = document.querySelector(".answer.msg");
@@ -160,7 +160,7 @@ function displayQuestion() {
             pageTitleE1.textContent = quiz[0].question;
 
             //displays answer
-            buttonsWrappperE1.appendChild(answerBtnE1);
+            buttonsWrapperE1.appendChild(answerBtnE1);
         }
         index++;    
     }
@@ -230,8 +230,25 @@ function saveScoreInLocalStorage() {
                 var highScore ={
                     initials: initials,
                     score: score,
-                }
+                };
             }
         }
+        scoresArray.push(highScore);
+        localStorage.setItem("highScores, JSON.stringify(scoresArray");
+        return;
+        //if new user then create and push the score object to the array
+    }else {
+        var highScore= {
+            initials: initials,
+            score: score,
+        };
+        scoresArray.push(highScore);
+        localStorage.setItem("highScores", JSON.stringify(scoresArray));
     }
 }
+
+/***Event Listeners */
+
+startQuizBtnE1.addEventListener("click", startQuizHandler);
+buttonsWrapperE1.addEventListener("click", quizHandler);
+submitFormBtnE1.addEventListener("click", submitScoreFormHandler);
