@@ -18,6 +18,24 @@ function displayHighScores() {
         var rank =1;
     //sprts array of objects by highsest scores
     var sortedByHighest = allScores.sort((a, b) => b.score - a.score);
-            
+    for (var i = 0; i < sortedByHighest.length; i++) {
+        var scoreEntryE1 = document.createElement("textarea");
+        scoreEntryE1.readOnly =true;
+        scoreEntryE1.setAttribute("class", "score-entry");
+        scoreEntryE1.value = `${rank}. ${sortedByHighest[i].initials}: ${sortedByHighest[i].score}`;
+        scoresEntriesE1.appendChild(scoreEntryE1);
+        if (i == 0) {
+            // highlights highest score
+            scoresEntriesE1.firstElementChild.setAttribute(
+                "style",
+                "background-color: cyan; text-align:center; color: red; font-size: 16pt"
+            );
+            scoreEntryE1.value = `${rank}. 🏅${sortedByHighest[i].initials}: ${sortedByHighest[i].score}🏅`;
+        }
+        rank++;
     }
+    } else {
+        handleNoScoresStyling();
+    }     
 }
+
