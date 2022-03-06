@@ -179,5 +179,17 @@ function displayDonePage() {
     pageTitleE1.textContent = "All Done!";
     buttonsWrapperE1.remove();
     document.querySelector(".time-wrapper").classList.add("hide");
-    
+
+    // unhides intitals form in DOM
+    var initalsFormWrapperE1 = document.querySelector(".initials-form-wrapper");
+    initalsFormWrapperE1.classList.remove("hide");
+
+    var finalScoreE1 = document.querySelector(".initials-form-wrapper p");
+
+    if (correctAnswers === 0 || score <= 0){
+        score = 0;
+        finalScoreE1.textContent = 'None of your answers are correct, and your final score is: ${score}.';
+        return;
+    }   else finalScoreE1.textContent = 'Your fional score is ${score}. Good Job!';
+    return;
 }
