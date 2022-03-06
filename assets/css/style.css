@@ -1,0 +1,31 @@
+/* Quiz page styling*/
+
+/* global */
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: x-large;
+}
+:root {
+    --darkPurple: #3a0c77;
+    --purple: #b185eb;
+    --white: #ffffff;
+}
+h1{
+    font-size: 28pt;
+    padding: 5px;
+    margin: 5pt
+}
+
+p{
+    font-size: x-large;
+}
+a{
+    text-decoration: none;
+}
+/*header*/
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
