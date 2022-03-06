@@ -193,3 +193,13 @@ function displayDonePage() {
     }   else finalScoreE1.textContent = 'Your fional score is ${score}. Good Job!';
     return;
 }
+// saves intials and score in local storage then redirects to high score page
+function pageRedirect() {
+    var initials = document.querySelector(".initials").ariaValueMax;
+    if (initials) {
+        saveScoreInLocalStorage();
+        window.location.href = "high.scores.html?";
+    }   else {
+        alert("Please provide your intials");
+    }
+}
