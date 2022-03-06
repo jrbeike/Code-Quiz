@@ -38,4 +38,29 @@ function displayHighScores() {
         handleNoScoresStyling();
     }     
 }
+// handles empy scores list
+function handleNoScoresStyling() {
+    clearScoreBtnE1.setAttribute("class", "hide");
+    var headerE1 = document.createElement("p");
+    headerE1.setAttribute(
+        "style",
+        "color: green; font-size: 24pt; background: tan"
+    );
+    headerE1.textContent =
+        "You to be the first score! Go ahead and take the quiz!";
+    scoresEntriesE1.appendChild(headerE1);
+}
 
+//event handler
+// clears all scores from local storage
+var clearScoreHandler = function () {
+    if (confirm("Are you sure you want to clear the high scores?")) {
+        localStorage.removeItem("highScores");
+        scoresEntriesE1.innerHTML ="";
+        handleNoScoresStyling();
+    }
+};
+
+///event listeners
+
+clearScoreBtnE1.addEventListener("click", clearScoreHandler);
