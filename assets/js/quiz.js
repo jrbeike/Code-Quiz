@@ -107,7 +107,7 @@ var quizHandler =function (event) {
         displayQuestion();
     }
     else if (quiz.length === 0 || score === 0) {
-        //gather intials
+        //gather initials
         displayDonePage();
     }
 };
@@ -174,15 +174,15 @@ function clearAnswerValidationMsg(){
     }, 2000);
 }
 
-//displays final score, collects initals
+//displays final score, collects initials
 function displayDonePage() {
     pageTitleE1.textContent = "All Done!";
     buttonsWrapperE1.remove();
     document.querySelector(".time-wrapper").classList.add("hide");
 
     // unhides intitals form in DOM
-    var initalsFormWrapperE1 = document.querySelector(".initials-form-wrapper");
-    initalsFormWrapperE1.classList.remove("hide");
+    var initialsFormWrapperE1 = document.querySelector(".initials-form-wrapper");
+    initialsFormWrapperE1.classList.remove("hide");
 
     var finalScoreE1 = document.querySelector(".initials-form-wrapper p");
 
@@ -193,20 +193,45 @@ function displayDonePage() {
     }   else finalScoreE1.textContent = 'Your fional score is ${score}. Good Job!';
     return;
 }
-// saves intials and score in local storage then redirects to high score page
+// saves initials and score in local storage then redirects to high score page
 function pageRedirect() {
     var initials = document.querySelector(".initials").ariaValueMax;
     if (initials) {
         saveScoreInLocalStorage();
         window.location.href = "high.scores.html?";
     }   else {
-        alert("Please provide your intials");
+        alert("Please provide your initials");
     }
 }
 // adds the score to the local storage for further re-use in high-scores.js
 function saveScoreInLocalStorage() {
-    var intials = document.querySelector("#initals").value.trim().toUpperCase();
+    var initials = document.querySelector("#initials").value.trim().toUpperCase();
     //we want to preserve the existing score rather than overwriting them
     var scoresArray =JSON.parse(localStorage.getItem("highScores")) || [];
-    
+    // handles score update for the existing user
+    if (scoresArray.length !=0) {
+        for (var i = 0; i < scoresArray.length; i++) {
+            // if existing user, check current score
+            // and only update if current score is grater than existing score for this user
+            if (scoresArray[i].initials === initials) {
+                window.alert(
+                    "Looks like you already are in our system, we will go ahead and upddate your highest score."
+                );
+                var existingUserRecord = parseInt(scoresArray[i].score);
+                if (existingUserRecord < score) {
+                    scoresArray.splice(i, 1);
+                    var highScore = {
+                        initials: initials,
+                        score: score,
+                    };
+                    break;
+                }   else return;
+            }else if (scoresArray[i].initials != initials){
+                var highScore ={
+                    initials: initials,
+                    score: score,
+                }
+            }
+        }
+    }
 }
