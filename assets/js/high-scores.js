@@ -44,7 +44,7 @@ function handleNoScoresStyling() {
     var headerEl = document.createElement("p");
     headerEl.setAttribute(
         "style",
-        "color: green; font-size: 24pt; background: tan"
+        "color: white; font-size: 24pt; background: gray"
     );
     headerEl.textContent =
         "You get to be the first score! Go ahead and take the quiz!";
