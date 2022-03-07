@@ -51,28 +51,28 @@ var quiz = [
 ];
 
 /*global dom variables*/
-var timerE1 =document.querySelector("#timer");
-var pageContentE1 = document.querySelector(".page-content");
-var startQuizBtnE1 = document.querySelector("#start-quiz");
-var pageTitleE1 = document.querySelector(".page-title");
-var introMsgE1 = document.querySelector(".page-content p");
-var buttonsWrapperE1 = document.querySelector(".btn-wrapper");
-var scoreE1 = document.querySelector("#timer");
-var submitFormBtnE1 = document.querySelector("#submit-form-btn");
-var answerMsgE1 = document.querySelector(".answer-msg");
+var timerEl =document.querySelector("#timer");
+var pageContentEl = document.querySelector(".page-content");
+var startQuizBtnEl = document.querySelector("#start-quiz");
+var pageTitleEl = document.querySelector(".page-title");
+var introMsgEl = document.querySelector(".page-content p");
+var buttonsWrapperEl = document.querySelector(".btn-wrapper");
+var scoreEl = document.querySelector("#timer");
+var submitFormBtnEl = document.querySelector("#submit-form-btn");
+var answerMsgEl = document.querySelector(".answer-msg");
 
 /**Event handlers/ */
 var startQuizHandler =function () {
     //set intial timer to 75 seconds
     score = 75;
-    timerE1.textContent = score;
+    timerEl.textContent = score;
 
     //modifies CSS
-    pageContentE1.style.alignItems = "flex-start";
+    pageContentEl.style.alignItems = "flex-start";
 
     // removes start button and intro text
-    startQuizBtnE1.remove();
-    introMsgE1.remove();
+    startQuizBtnEl.remove();
+    introMsgEl.remove();
 
     countDown();
     displayQuestion();
@@ -82,24 +82,24 @@ var startQuizHandler =function () {
 var quizHandler =function (event) {
     //debugger
     document.querySelector(".answer-wrapper").classList.remove("hide");
-    var targetE1 = event.target;
+    var targetEl = event.target;
     //removes span and stores it value as the answer
-    var answer =  targetE1.innerHTML;
+    var answer =  targetEl.innerHTML;
     answer=answer.replace(/<span>\d. <\/span>/, "");
 
     //checks answer
     if (answer === quiz[0].correctAnswer){
-        answerMsgE1.setAttribute("style","color: green");
-        answerMsgE1.textContent = "Correct!";
+        answerMsgEl.setAttribute("style","color: green");
+        answerMsgEl.textContent = "Correct!";
         correctAnswers++;
         clearAnswerValidationMsg();
       } else if (answer != quiz[0].correctAnswer) {
-        answerMsgE1.setAttribute("style", "color: red");
-        answerMsgE1.textContent = "Wrong!";
+        answerMsgEl.setAttribute("style", "color: red");
+        answerMsgEl.textContent = "Wrong!";
         score = score - 15;
         clearAnswerValidationMsg();
         //set element value
-        scoreE1.textContent =score;
+        scoreEl.textContent =score;
     }   
     // removes answered questions fromt eh array of question objects
     quiz.shift();
@@ -124,7 +124,7 @@ function countDown(){
         // as long as the score is grater than 1 and there are no mroe questions left
         //keep counting doiwn
         if (score >= 1 && quiz.length >=1) {
-            timerE1.textContent = score;
+            timerEl.textContent = score;
             score--;
             console.error(quiz.length);
         }
@@ -138,9 +138,9 @@ function countDown(){
 //adds current question and answer to the form
 function displayQuestion() {
     // checkss if there are existing answers already displayed
-    var buttonE1ChildElementsCount = document.querySelector(".btn-wrapper")
+    var buttonElChildElementsCount = document.querySelector(".btn-wrapper")
     .childElementCount;
-    if (buttonE1ChildElementsCount > 0) {
+    if (buttonElChildElementsCount > 0) {
         document.querySelector(".btn-wrapper").innerHTML = "";
     }
     //id counter that will be then assigned to DOM entry for a given answer
@@ -149,18 +149,18 @@ function displayQuestion() {
     // for each answer creates a new buttom and writes answers value into elements text
     for (var key in quiz[0]) {
         if (/^answer/.test(key)) {
-            var newSpanE1 = document.createElement("span");
-            newSpanE1.innerText = `${index}. `;
+            var newSpanEl = document.createElement("span");
+            newSpanEl.innerText = `${index}. `;
 
-            var answerBtnE1 =document.createElement("button");
-            answerBtnE1.setAttribute("class", "btn left-aligned");
-            answerBtnE1.innerHTML = `<span>${index}. </span>${quiz[0][key]}`;
+            var answerBtnEl =document.createElement("button");
+            answerBtnEl.setAttribute("class", "btn left-aligned");
+            answerBtnEl.innerHTML = `<span>${index}. </span>${quiz[0][key]}`;
 
             //displayts question
-            pageTitleE1.textContent = quiz[0].question;
+            pageTitleEl.textContent = quiz[0].question;
 
             //displays answer
-            buttonsWrapperE1.appendChild(answerBtnE1);
+            buttonsWrapperEl.appendChild(answerBtnEl);
         }
         index++;    
     }
@@ -176,26 +176,26 @@ function clearAnswerValidationMsg(){
 
 //displays final score, collects initials
 function displayDonePage() {
-    pageTitleE1.textContent = "All Done!";
-    buttonsWrapperE1.remove();
+    pageTitleEl.textContent = "All Done!";
+    buttonsWrapperEl.remove();
     document.querySelector(".timer-wrapper").classList.add("hide");
 
     // unhides intitals form in DOM
-    var initialsFormWrapperE1 = document.querySelector(".initials-form-wrapper");
-    initialsFormWrapperE1.classList.remove("hide");
+    var initialsFormWrapperEl = document.querySelector(".initials-form-wrapper");
+    initialsFormWrapperEl.classList.remove("hide");
 
-    var finalScoreE1 = document.querySelector(".initials-form-wrapper p");
+    var finalScoreEl = document.querySelector(".initials-form-wrapper p");
 
     if (correctAnswers === 0 || score <= 0){
         score = 0;
-        finalScoreE1.textContent = `None of your answers are correct, and your final score is: ${score}.`;
+        finalScoreEl.textContent = `None of your answers are correct, and your final score is: ${score}.`;
         return;
-    }   else finalScoreE1.textContent = `Your fional score is ${score}. Good Job!`;
+    }   else finalScoreEl.textContent = `Your fional score is ${score}. Good Job!`;
     return;
 }
 // saves initials and score in local storage then redirects to high score page
 function pageRedirect() {
-    var initials = document.querySelector(".initials").value;
+    var initials = document.querySelector("#initials").value;
     if (initials) {
         saveScoreInLocalStorage();
         window.location.href = "high-scores.html?";
@@ -249,6 +249,6 @@ function saveScoreInLocalStorage() {
 
 /***Event Listeners */
 
-startQuizBtnE1.addEventListener("click", startQuizHandler);
-buttonsWrapperE1.addEventListener("click", quizHandler);
-submitFormBtnE1.addEventListener("click", submitScoreFormHandler);
+startQuizBtnEl.addEventListener("click", startQuizHandler);
+buttonsWrapperEl.addEventListener("click", quizHandler);
+submitFormBtnEl.addEventListener("click", submitScoreFormHandler);

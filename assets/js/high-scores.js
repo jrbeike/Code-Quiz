@@ -1,8 +1,8 @@
 //DOM elements
-var goBackBtnE1 = document.querySelector("#go-back-btn");
-var clearScoreBtnE1 = document.querySelector("#clear-scores-btn");
-var textFiueldReadOnlyE1 = document.querySelector("#textArea");
-var scoresEntriesE1 = document.querySelector(".scores-entries-wrapper");
+var goBackBtnEl = document.querySelector("#go-back-btn");
+var clearScoreBtnEl = document.querySelector("#clear-scores-btn");
+var textFieldReadOnlyEl = document.querySelector("textArea");
+var scoresEntriesEl = document.querySelector(".scores-entries-wrapper");
 
 //on page load
 
@@ -15,22 +15,22 @@ function displayHighScores() {
     var allScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
     if (allScores.length != 0) {
-        var rank =1;
+        var rank = 1;
     //sprts array of objects by highsest scores
     var sortedByHighest = allScores.sort((a, b) => b.score - a.score);
     for (var i = 0; i < sortedByHighest.length; i++) {
-        var scoreEntryE1 = document.createElement("textarea");
-        scoreEntryE1.readOnly =true;
-        scoreEntryE1.setAttribute("class", "score-entry");
-        scoreEntryE1.value = `${rank}. ${sortedByHighest[i].initials}: ${sortedByHighest[i].score}`;
-        scoresEntriesE1.appendChild(scoreEntryE1);
+        var scoreEntryEl = document.createElement("textarea");
+        scoreEntryEl.readOnly = true;
+        scoreEntryEl.setAttribute("class", "score-entry");
+        scoreEntryEl.value = `${rank}. ${sortedByHighest[i].initials}: ${sortedByHighest[i].score}`;
+        scoresEntriesEl.appendChild(scoreEntryEl);
         if (i == 0) {
             // highlights highest score
-            scoresEntriesE1.firstElementChild.setAttribute(
+            scoresEntriesEl.firstElementChild.setAttribute(
                 "style",
                 "background-color: cyan; text-align:center; color: red; font-size: 16pt"
             );
-            scoreEntryE1.value = `${rank}. 🏅${sortedByHighest[i].initials}: ${sortedByHighest[i].score}🏅`;
+            scoreEntryEl.value = `${rank}. 🏅${sortedByHighest[i].initials}: ${sortedByHighest[i].score}🏅`;
         }
         rank++;
     }
@@ -40,15 +40,15 @@ function displayHighScores() {
 }
 // handles empy scores list
 function handleNoScoresStyling() {
-    clearScoreBtnE1.setAttribute("class", "hide");
-    var headerE1 = document.createElement("p");
-    headerE1.setAttribute(
+    clearScoreBtnEl.setAttribute("class", "hide");
+    var headerEl = document.createElement("p");
+    headerEl.setAttribute(
         "style",
         "color: green; font-size: 24pt; background: tan"
     );
-    headerE1.textContent =
+    headerEl.textContent =
         "You get to be the first score! Go ahead and take the quiz!";
-    scoresEntriesE1.appendChild(headerE1);
+    scoresEntriesEl.appendChild(headerEl);
 }
 
 //event handler
@@ -56,11 +56,11 @@ function handleNoScoresStyling() {
 var clearScoreHandler = function () {
     if (confirm("Are you sure you want to clear the high scores?")) {
         localStorage.removeItem("highScores");
-        scoresEntriesE1.innerHTML ="";
+        scoresEntriesEl.innerHTML = "";
         handleNoScoresStyling();
     }
 };
 
 ///event listeners
 
-clearScoreBtnE1.addEventListener("click", clearScoreHandler);
+clearScoreBtnEl.addEventListener("click", clearScoreHandler);
