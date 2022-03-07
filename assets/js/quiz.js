@@ -59,13 +59,13 @@ var introMsgE1 = document.querySelector(".page-content p");
 var buttonsWrapperE1 = document.querySelector(".btn-wrapper");
 var scoreE1 = document.querySelector("#timer");
 var submitFormBtnE1 = document.querySelector("#submit-form-btn");
-var answerMsgE1 = document.querySelector(".answer.msg");
+var answerMsgE1 = document.querySelector(".answer-msg");
 
 /**Event handlers/ */
 var startQuizHandler =function () {
     //set intial timer to 75 seconds
     score = 75;
-    timerE1.textContent =score;
+    timerE1.textContent = score;
 
     //modifies CSS
     pageContentE1.style.alignItems = "flex-start";
@@ -129,7 +129,7 @@ function countDown(){
             console.error(quiz.length);
         }
         else {
-            clearInterbal(timeInterval);
+            clearInterval(timeInterval);
             displayDonePage();
         }
     }, 1000);
@@ -150,7 +150,7 @@ function displayQuestion() {
     for (var key in quiz[0]) {
         if (/^answer/.test(key)) {
             var newSpanE1 = document.createElement("span");
-            newSpanE1.innerText = '${index}. ';
+            newSpanE1.innerText = `${index}. `;
 
             var answerBtnE1 =document.createElement("button");
             answerBtnE1.setAttribute("class", "btn left-aligned");
@@ -178,7 +178,7 @@ function clearAnswerValidationMsg(){
 function displayDonePage() {
     pageTitleE1.textContent = "All Done!";
     buttonsWrapperE1.remove();
-    document.querySelector(".time-wrapper").classList.add("hide");
+    document.querySelector(".timer-wrapper").classList.add("hide");
 
     // unhides intitals form in DOM
     var initialsFormWrapperE1 = document.querySelector(".initials-form-wrapper");
@@ -188,17 +188,17 @@ function displayDonePage() {
 
     if (correctAnswers === 0 || score <= 0){
         score = 0;
-        finalScoreE1.textContent = 'None of your answers are correct, and your final score is: ${score}.';
+        finalScoreE1.textContent = `None of your answers are correct, and your final score is: ${score}.`;
         return;
-    }   else finalScoreE1.textContent = 'Your fional score is ${score}. Good Job!';
+    }   else finalScoreE1.textContent = `Your fional score is ${score}. Good Job!`;
     return;
 }
 // saves initials and score in local storage then redirects to high score page
 function pageRedirect() {
-    var initials = document.querySelector(".initials").ariaValueMax;
+    var initials = document.querySelector(".initials").value;
     if (initials) {
         saveScoreInLocalStorage();
-        window.location.href = "high.scores.html?";
+        window.location.href = "high-scores.html?";
     }   else {
         alert("Please provide your initials");
     }

@@ -47,7 +47,7 @@ function handleNoScoresStyling() {
         "color: green; font-size: 24pt; background: tan"
     );
     headerE1.textContent =
-        "You to be the first score! Go ahead and take the quiz!";
+        "You get to be the first score! Go ahead and take the quiz!";
     scoresEntriesE1.appendChild(headerE1);
 }
 
