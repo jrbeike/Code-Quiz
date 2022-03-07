@@ -18,11 +18,11 @@ This is a Java Script game that is designed to test your knowledge and score you
 
  Follow the link to interact and try and get the high score!
 
- [Test your JavaScript Knowledge HERE!]()
+ [Test your JavaScript Knowledge HERE!](https://jrbeike.github.io/Code-Quiz/)
 
  ## Installation
 
- git clone 
+ git clone https://github.com/jrbeike/Code-Quiz.git
 
  ## Note
 
