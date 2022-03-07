@@ -30,7 +30,7 @@ function displayHighScores() {
                 "style",
                 "background-color: cyan; text-align:center; color: red; font-size: 16pt"
             );
-            scoreEntryEl.value = `${rank}. 🏅${sortedByHighest[i].initials}: ${sortedByHighest[i].score}🏅`;
+            scoreEntryEl.value = `${rank}. ${sortedByHighest[i].initials}: ${sortedByHighest[i].score}`;
         }
         rank++;
     }
